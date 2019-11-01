@@ -7,6 +7,7 @@ import { FormProdutosComponent } from './form-produtos/form-produtos.component';
 import { ProdutoService } from './produto.service';
 import { MoedaPipe } from './moeda.pipe';
 import { FiltroPrecoPipe } from './filtro-preco.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FiltroPrecoPipe } from './filtro-preco.pipe';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [ProdutoService],
   bootstrap: [AppComponent]
