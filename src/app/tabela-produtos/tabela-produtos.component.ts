@@ -24,4 +24,9 @@ export class TabelaProdutosComponent implements OnInit,OnChanges {
     this.produtos = this.produtoService.listar();
   }
 
+  deletar(id: number){
+    this.produtoService.deletar(id);
+  }
+
+
 }

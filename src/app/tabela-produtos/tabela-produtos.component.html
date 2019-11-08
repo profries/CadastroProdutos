@@ -18,6 +18,8 @@
         <!-- <td>{{prod.preco | currency:'BRL'}}</td> -->
         <td>{{prod.preco | moeda}}</td>
         <td>{{prod.dataValidade | date:'dd/MM/yyyy'}}</td>
+        <td><a [routerLink]="'/edit/'+prod.id">Editar</a></td>
+        <td><a [routerLink]="" (click)="deletar(prod.id)">Excluir</a> </td>    
     </tr>
 </table>
 

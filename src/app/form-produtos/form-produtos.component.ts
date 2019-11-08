@@ -11,6 +11,7 @@ import { Route, Router, ActivatedRoute } from '@angular/router';
 export class FormProdutosComponent implements OnInit {
   titulo = 'Formulário de Produtos';
   produto = new Produto();
+  id: number;
 
   constructor(private service: ProdutoService,
     private route: ActivatedRoute,
@@ -18,15 +19,29 @@ export class FormProdutosComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-    console.log("ID: ",id);
-
+    this.id = this.route.snapshot.params['id'];
+    if(this.id){
+      console.log("ID:",this.id);
+      this.produto = this.service.buscarPorId(this.id);
+    }
+    else{
+      console.log("não tem id");
+      this.produto = new Produto();
+    }
   }
 
   salvarProduto(){
-    this.service.adicionar(this.produto);
-    this.produto = new Produto();
-    this.router.navigate(["/tabela"])
+    if(this.id){
+      this.service.editar(this.id, this.produto);
+    }
+    else{
+      this.service.adicionar(this.produto);
+    }
+    this.router.navigate(['/tabela']);
+  }
+
+  cancelar(){
+    this.router.navigate(['/tabela']);
   }
 
 
