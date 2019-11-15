@@ -5,14 +5,14 @@ import { Produto } from './produto';
   providedIn: 'root'
 })
 export class ProdutoService {
-  produtos: Produto[] = [
-    {id:1,nome:"Produto 1",marca:"Marca 1",preco:100.00,dataValidade: new Date(2020,1,1)},
-    {id:2,nome:"Produto 2",marca:"Marca 2",preco:200.00,dataValidade: new Date(2020,2,2)},
-    {id:3,nome:"Produto 3",marca:"Marca 3",preco:300.00,dataValidade: new Date(2020,3,3)},
-    {id:4,nome:"Produto 4",marca:"Marca 4",preco:400.00,dataValidade: new Date(2020,4,4)},
-    {id:5,nome:"Produto 5",marca:"Marca 5",preco:500.00,dataValidade: new Date(2020,5,5)},
-    {id:6,nome:"Produto 6",marca:"Marca 6",preco:600.00,dataValidade: new Date(2020,6,6)},
-  ]
+  produtos: Produto[] = [];
+  //   {id:1,nome:"Produto 1",marca:"Marca 1",preco:100.00,dataValidade: new Date(2020,1,1)},
+  //   {id:2,nome:"Produto 2",marca:"Marca 2",preco:200.00,dataValidade: new Date(2020,2,2)},
+  //   {id:3,nome:"Produto 3",marca:"Marca 3",preco:300.00,dataValidade: new Date(2020,3,3)},
+  //   {id:4,nome:"Produto 4",marca:"Marca 4",preco:400.00,dataValidade: new Date(2020,4,4)},
+  //   {id:5,nome:"Produto 5",marca:"Marca 5",preco:500.00,dataValidade: new Date(2020,5,5)},
+  //   {id:6,nome:"Produto 6",marca:"Marca 6",preco:600.00,dataValidade: new Date(2020,6,6)},
+  // ]
   constructor() { }
 
   adicionar(produto: Produto){
@@ -32,7 +32,7 @@ export class ProdutoService {
   }
 
   buscarPorId(id: number): Produto{
-    return this.produtos.find(prod => prod.id == id);
+    return this.produtos.find(prod => prod._id == id);
   }
 
   editar(id:number, prod:Produto){
@@ -43,7 +43,7 @@ export class ProdutoService {
   }
 
   private getIndice(id){
-    return this.produtos.findIndex(prod => prod.id == id);
+    return this.produtos.findIndex(prod => prod._id == id);
 
   }
 }

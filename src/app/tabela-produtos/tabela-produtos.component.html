@@ -7,19 +7,20 @@
     <tr>
         <th>ID</th>
         <th>NOME</th>
-        <th>MARCA</th>
+        <!-- <th>MARCA</th> -->
         <th>PREÇO</th>
-        <th>VALIDADE</th>
+        <!-- <th>VALIDADE</th> -->
+        <th colspan="2" style="text-align: center">AÇÕES</th>
     </tr>
     <tr *ngFor='let prod of (produtos|filtroPreco:preco)'>
-        <td>{{prod.id}}</td>
+        <td>{{prod._id}}</td>
         <td>{{prod.nome}}</td>
-        <td>{{prod.marca | uppercase}}</td>
+        <!-- <td>{{prod.marca | uppercase}}</td> -->
         <!-- <td>{{prod.preco | currency:'BRL'}}</td> -->
         <td>{{prod.preco | moeda}}</td>
-        <td>{{prod.dataValidade | date:'dd/MM/yyyy'}}</td>
-        <td><a [routerLink]="'/edit/'+prod.id">Editar</a></td>
-        <td><a [routerLink]="" (click)="deletar(prod.id)">Excluir</a> </td>    
+        <!-- <td>{{prod.dataValidade | date:'dd/MM/yyyy'}}</td> -->
+        <td style="text-align: center"><a [routerLink]="'/edit/'+prod._id">Editar</a></td>
+        <td style="text-align: center"><a [routerLink]="'/tabela'" (click)="deletar(prod._id)">Excluir</a> </td>    
     </tr>
 </table>
 

@@ -1,7 +1,7 @@
 export class Produto {
-    id: number;
+    _id: number;
     nome: string;
-    marca: string;
+    // marca: string;
     preco: number;
-    dataValidade: Date;
+    // dataValidade: Date;
 }

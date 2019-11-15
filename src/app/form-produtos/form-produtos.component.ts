@@ -2,6 +2,7 @@ import { Produto } from '../produto';
 import { ProdutoService } from '../produto.service';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router, ActivatedRoute } from '@angular/router';
+import { ProdutoApiService } from '../produto-api.service';
 
 @Component({
   selector: 'app-form-produtos',
@@ -13,7 +14,8 @@ export class FormProdutosComponent implements OnInit {
   produto = new Produto();
   id: number;
 
-  constructor(private service: ProdutoService,
+  constructor(private apiService: ProdutoApiService,
+    private service: ProdutoService,
     private route: ActivatedRoute,
     private router: Router
     ) { }
@@ -21,8 +23,12 @@ export class FormProdutosComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     if(this.id){
-      console.log("ID:",this.id);
-      this.produto = this.service.buscarPorId(this.id);
+      this.apiService.buscarPorId(this.id).subscribe(res => {
+        this.produto = res;
+        console.log(this.produto);
+      }, err => { 
+        console.error("Erro: "+err);
+      });
     }
     else{
       console.log("não tem id");
@@ -32,12 +38,23 @@ export class FormProdutosComponent implements OnInit {
 
   salvarProduto(){
     if(this.id){
-      this.service.editar(this.id, this.produto);
+      //this.service.editar(this.id, this.produto);
+      this.apiService.editar(this.id, this.produto).subscribe(res => {        
+        console.log(this.produto);
+        this.router.navigate(['/tabela']);
+      }, err => { 
+        console.error("Erro: "+err);
+      });
     }
     else{
-      this.service.adicionar(this.produto);
+      //this.service.adicionar(this.produto);
+      this.apiService.adicionar(this.produto).subscribe(res => {        
+        alert(this.produto.nome+" cadastrado com sucesso!");
+        this.router.navigate(['/tabela']);
+      }, err => { 
+        alert("Erro: "+err);
+      });
     }
-    this.router.navigate(['/tabela']);
   }
 
   cancelar(){
